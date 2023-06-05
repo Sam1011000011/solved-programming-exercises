@@ -1,0 +1,17 @@
+//(Financial application: compute future tuition) Suppose that the tuition for a university is $10,000 this year and increases 5% every year. In one year, the tuition
+//will be $10,500. Write a program that computes the tuition in ten years and the
+//total cost of four years’ worth of tuition after the tenth year.
+public class Main {
+
+    public static void main(String[] args) {
+        int x=10000;
+        for(int i=1;i<=10;i++)
+            x=x+x*5/100;
+        System.out.println("tuition after ten years is: "+x);
+        int sum=x;
+        for(int i=1;i<=3;i++)
+        {x=x+x*5/100;
+        sum=sum+x;}
+        System.out.println("tuition of 4 years is : "+sum);
+    }
+}
