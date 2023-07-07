@@ -1,0 +1,25 @@
+package com.company;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("loan amount : ");
+        double loan=sc.nextDouble();
+        System.out.println("Number of years : ");
+        int years=sc.nextInt();
+        System.out.println("Interest Rate    Monthly Payment    Total Payment");
+        for(double i=5.000;i<=8.000;i=i+0.125)
+        {
+            System.out.printf("%5.3f",i);
+            System.out.printf("%%%11s","");
+            double monthlyInterest=i/1200;
+            double monthlyPay=loan * monthlyInterest / (1 - 1 / Math.pow(1 + monthlyInterest, years * 12));
+            System.out.printf("%-19.2f",monthlyPay);
+            double totalPay=monthlyPay*years*12;
+            System.out.printf("%1.2f",totalPay);
+            System.out.println();
+        }
+    }
+}
