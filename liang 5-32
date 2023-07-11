@@ -1,0 +1,32 @@
+//(Game: lottery) Revise Listing 3.8, Lottery.java, to generate a lottery of a two digit number. The two digits in the number are distinct. (Hint: Generate the first
+digit. Use a loop to continuously generate the second digit until it is different
+from the first digit.)//
+import java.util.Scanner;
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("enter your number(cant be more than 2 digits or negative) : ");
+        int num= sc.nextInt();
+        while (num>99) {
+            System.out.println("enter a correct number!");
+            num= sc.nextInt();}        
+        int firstD=(int)(Math.random()*10);
+        int secondD=(int)(Math.random()*10);
+        System.out.println(firstD+"  "+secondD);
+        while(firstD==secondD)
+         {
+             secondD=(int)Math.random()*10;
+         }
+         if(num/10==firstD&&num%10==secondD)
+             System.out.println("you have won 10000");
+         if(num/10==secondD&&num%10==firstD)
+             System.out.println("you have won 3000");
+         if(num/10==firstD||num/10==secondD||num%10==secondD||num%10==firstD)
+             System.out.println("you have won 1000");
+         else
+             System.out.println("you lose :(");
+        System.out.println("the number was "+firstD+secondD);
+
+            }
+         }
