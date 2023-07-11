@@ -1,0 +1,80 @@
+//(Game: scissor, rock, paper) Programming Exercise 3.17 gives a program that
+plays the scissor-rock-paper game. Revise the program to let the user continuously play until either the user or the computer wins more than two times than its
+opponent//
+import java.util.Scanner;
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+//        rock=0 paper=1 scissors=2
+        int compWin=0;
+        int userWin=0;
+        while(compWin<2&&userWin<2)
+        {
+            System.out.println("enter 0 for rock 1 for paper 2 for scissors");
+            int userHand= sc.nextInt();
+            int compHand=(int)(Math.random()*4);
+            switch(userHand) {
+                //user throws rock
+                case 0:
+                    switch (compHand) {
+                        //rock
+                        case 0:
+                            System.out.println("rock and rock it's a draw this round");
+                            break;
+                        //paper    
+                        case 1:
+                            System.out.println("rock and paper you win this round");
+                            userWin++;
+                            break;
+                        //scissors    
+                        case 2:
+                            System.out.println("rock and scissors you lose this round");
+                            compWin++;
+                            break;
+                    }
+                    break;
+                //user throws paper    
+                case 1:
+                        switch (compHand) {
+                            case 0:
+                                System.out.println("paper and rock you win this round");
+                                userWin++;
+                                break;
+                            case 1:
+                                System.out.println("paper and paper its a draw this round");
+                                break;
+                            case 2:
+                                System.out.println("paper and scissors you lose this round");
+                                compWin++;
+                                break;
+                        }
+                    break;
+                //user throws scissors        
+                case 2:
+                        switch (compHand) {
+                            case 0:
+                                System.out.println("scissors and rock you lose this round");
+                                compWin++;
+                                break;
+                            case 1:
+                                System.out.println("scissors and paper you win this round");
+                                userWin++;
+                                break;
+                            case 2:
+                                System.out.println("scissors and scissors its a draw");
+                                break;
+                        }
+                break;
+
+            }
+
+        }
+        if(compWin==userWin)
+            System.out.println("its a draw");
+        if(compWin>userWin)
+            System.out.println("you lose the game");
+        if(compWin<userWin)
+            System.out.println("you win the game");
+        }
+            }
