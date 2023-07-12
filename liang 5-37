@@ -8,6 +8,12 @@ public class Main {
         System.out.println("enter you decimal integer ");
         int decimal = sc.nextInt();
         String Binary = "";
+        String sign="";
+        if(decimal>0)
+            sign="0";
+        else
+            sign="1";
+        decimal=Math.abs(decimal);
         if (decimal == 0)
             System.out.println("the binary equivalent is 0");
         else {
@@ -16,7 +22,7 @@ public class Main {
                 decimal = decimal / 2;
                                   }
 
-            System.out.println("the binary equivalent is : " + Binary);
+            System.out.println("the binary equivalent is : "+sign + Binary);
              }
     }
 }
