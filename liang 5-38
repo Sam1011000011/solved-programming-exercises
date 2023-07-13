@@ -1,0 +1,26 @@
+//(Decimal to octal) Write a program that prompts the user to enter a decimal
+integer and displays its corresponding octal value. Don’t use Java’s Integer
+.toOctalString(int) in this program//
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter your decimal integer : ");
+        int number = sc.nextInt();
+        String octalNum = "";
+        String sign = "";
+        //edge case
+        if (number == 0)
+            System.out.println("the octal equivalent is : 0");
+        else {
+            if (number < 0)
+                sign = "-";
+            number = Math.abs(number);
+            while (number > 0) {
+                octalNum = Integer.toString(number % 8) + octalNum;
+                number = number / 8;
+            }
+            System.out.println("the octal equivalent is : " + sign + octalNum);
+        }
+    }
+}
