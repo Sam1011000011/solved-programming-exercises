@@ -1,0 +1,18 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter the ten numbers : ");
+        double xisum=0;
+        double xi2sum=0;
+        for(int i=1;i<=10;i++) {
+            double number= sc.nextDouble();
+            xisum+=number;
+            xi2sum+=Math.pow(number,2);
+        }
+        double mean=xisum/10;
+        double deviation=Math.sqrt((xi2sum-(xisum*xisum/10))/9);
+        System.out.println("the mean is "+mean);
+        System.out.println("The standard deviation is "+deviation);
+        }
+    }
