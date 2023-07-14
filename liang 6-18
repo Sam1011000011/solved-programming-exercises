@@ -1,0 +1,35 @@
+/* (Check password) Some websites impose certain rules for passwords. Write a
+method that checks whether a string is a valid password. Suppose the password
+rules are as follows:
+■ A password must have at least eight characters.
+■ A password consists of only letters and digits.
+■ A password must contain at least two digits.
+Write a program that prompts the user to enter a password and displays Valid
+Password if the rules are followed or Invalid Password otherwise*/
+
+import java.util.Scanner;
+import static java.lang.Character.isLetter;
+import static jdk.nashorn.internal.runtime.regexp.joni.EncodingHelper.isDigit;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter your password");
+        String Pass= sc.nextLine();
+        System.out.println(CheckPassword(Pass));
+    }
+    public static String CheckPassword(String password){
+       if(password.length()<8)
+            return "invalid password (your password must be at least 8 characters)";
+       int digits=0;
+       for(int i=0;i<password.length();i++)
+       {if(isDigit(password.charAt(i)))
+           digits++;
+        if(!isDigit(password.charAt(i))&&!isLetter(password.charAt(i)))
+            return "invalid password(your password must consist of only letters and digits)";
+       }
+       if(digits<2)
+           return "invalid password(your password must consist of at least 2 digits)";
+       return "valid password";
+    }
+}
