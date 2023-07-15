@@ -1,0 +1,84 @@
+/*(Display current date and time) Listing 2.7, ShowCurrentTime.java, displays the
+current time. Improve this example to display the current date and time. The calendar example in Listing 6.12, PrintCalendar.java, should give you some ideas on
+how to find the year, month, and day.*/
+
+public class Main {
+    static long totalDays=0;
+    public static void main(String[] args) {
+        long milliSeconds=System.currentTimeMillis();
+        System.out.println("the current date and time is : "+getCurrentDate(milliSeconds)+" "+getCurrentTime(milliSeconds));
+    }
+
+    public static String getCurrentTime(long milliSeconds) {
+        long totalSeconds = milliSeconds / 1000;
+        long currentSecond = totalSeconds % 60;
+        long totalMinutes = totalSeconds / 60;
+        long currentMinute = totalMinutes % 60;
+        long totalHours = totalMinutes / 60;
+        long currentHour = totalHours % 24;
+        return currentHour+":"+currentMinute+":"+currentSecond+" GMT";
+    }
+
+    public static String getCurrentDate(long milliSeconds){
+        totalDays=milliSeconds/1000/60/60/24+1;
+        //totalDays=0;
+        int year=1970;
+        while(totalDays-365>0)
+        {
+            if(isLeapyear(year))
+                totalDays=totalDays-366;
+            else
+                totalDays=totalDays-365;
+            year++;
+        }
+        int month=getCurrentMonth(year);
+
+    return year+" "+getMonthName(month)+" "+totalDays;}
+    public static String getMonthName(int month)
+    {String monthName = "";
+         switch (month) {
+         case 1: monthName = "January"; break;
+         case 2: monthName = "February"; break;
+         case 3: monthName = "March"; break;
+         case 4: monthName = "April"; break;
+         case 5: monthName = "May"; break;
+         case 6: monthName = "June"; break;
+         case 7: monthName = "July"; break;
+         case 8: monthName = "August"; break;
+         case 9: monthName = "September"; break;
+         case 10: monthName = "October"; break;
+         case 11: monthName = "November"; break;
+         case 12: monthName = "December";
+           }
+         return monthName;}
+    public static int getCurrentMonth(int year) {
+        int month=1;
+        while(totalDays-getNumberOfDaysInMonth(year,month)>0)
+        {
+            totalDays=totalDays-getNumberOfDaysInMonth(year,month);
+            month++;
+        }
+    return month;
+    }
+    public static int getNumberOfDaysInMonth(int year, int month){
+        int days=0;
+        switch(month)
+        {   case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+            days=31;
+            break;
+            case 4: case 6: case 9: case 11:
+            days=30;
+            break;
+            case 2:
+            if(isLeapyear(year))
+                days=29;
+            else
+                days=28;
+            break;
+        }
+        return days;
+    }
+    public static boolean isLeapyear(int year){
+        return year % 400 == 0 || (year % 100 != 0 && year % 4 == 0);
+    }
+}
