@@ -1,0 +1,37 @@
+/*(Palindromic prime) A palindromic prime is a prime number and also palindromic. For example, 131 is a prime and also a palindromic prime, as are 313 and
+757. Write a program that displays the first 100 palindromic prime numbers. Display 10 numbers per line, separated by exactly one space, as follows:
+2 3 5 7 11 101 131 151 181 191
+313 353 373 383 727 757 787 797 919 929*/
+public class Main {
+    public static void main(String[] args) {
+        int numCount=1;
+        int i=2;
+        while(numCount<=100)
+        { if(isPrime(i)&&reverse(i)==i)
+        {   if(numCount%10==0)
+                System.out.println(i+" ");
+            else
+                System.out.print(i+" ");
+            numCount++;}
+            i++;
+        }
+    }
+    public static boolean isPrime(int number) {
+        for (int divisor = 2; divisor <= number / 2; divisor++) {
+             if (number % divisor == 0) {
+                 return false;
+             }}
+            return true;}
+    public static int reverse(int number)
+    {   String revNum="";
+        if(number==0)
+            return 0;
+        else{
+            while(number!=0)
+            {  revNum=revNum+Integer.toString(number%10);
+                number=number/10;
+            }
+            int Reverse=Integer.parseInt(revNum);
+            return Reverse;}
+    }
+}
