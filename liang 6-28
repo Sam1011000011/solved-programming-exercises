@@ -1,0 +1,21 @@
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("p"+"          "+"2^p-1");
+        System.out.println("--------------------");
+        for(int p=1;p<=31;p++)
+        {   int two_powerP_minus1=(int) (Math.pow(2,p)-1);
+            if(isPrime(two_powerP_minus1))
+            {System.out.printf("%-11d", p);
+             System.out.print(two_powerP_minus1);
+                System.out.println();}
+        }
+    }
+    public static boolean isPrime(int number) {
+        if(number==1)
+            return false;
+        else
+        for (int divisor = 2; divisor <= number / 2; divisor++) {
+             if (number % divisor == 0) {
+                 return false;
+             }}
+            return true;}}
