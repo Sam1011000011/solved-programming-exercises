@@ -1,0 +1,27 @@
+public class Main {
+    public static void main(String[] args) {
+        int dice1=(int)(Math.random()*6)+1;
+        int dice2=(int)(Math.random()*6)+1;
+        int diceSum=dice1+dice2;
+        int point=0;
+        System.out.println("you rolled "+dice1+"+"+dice2+"="+diceSum);
+        if(diceSum==7||diceSum==7)
+            System.out.println("you win");
+        else if (diceSum==2||diceSum==3||diceSum==12)
+            System.out.println("you lose");
+        else
+            while(true)
+            { point=diceSum;
+             System.out.println("point is "+point);
+                dice1=(int)(Math.random()*6)+1;
+                dice2=(int)(Math.random()*6)+1;
+                diceSum=dice1+dice2;
+                System.out.println("you rolled "+dice1+"+"+dice2+"="+diceSum);
+                if(diceSum==point)
+                 { System.out.println("you win");
+                     break;}
+                else if (diceSum==7)
+                  {System.out.println("you lose");
+                    break;}
+            }
+            }}
