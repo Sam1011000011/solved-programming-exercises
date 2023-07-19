@@ -1,0 +1,53 @@
+/*(Game: chance of winning at craps) Revise Exercise 6.30 to run it 10,000 times
+and display the number of winning games.*/
+import java.util.Objects;
+
+public class Main {
+    static int point;
+    public static void main(String[] args) {
+        int dice1;
+        int dice2;
+        String result;
+        int win=0;
+        for(int i=0;i<10000;i++)
+        {
+            result="";
+            point=0;
+            while (Objects.equals(result, ""))
+                {dice1=Roll();
+                dice2=Roll();
+                System.out.println("you rolled "+dice1+"+"+dice2+"="+(dice1+dice2));
+                result=Result(dice1,dice2);}
+            if(result.equals("craps"))
+                System.out.println("you lose this round");
+            else if(result.equals("natural")){
+                System.out.println("you win this round");
+                win++;}}
+        System.out.println("you won "+win+" times");
+    }
+    public static int Roll()
+    {return (int) (Math.random()*6+1);}
+    public static String Result(int dice1,int dice2){
+        int sum=dice1+dice2;
+        String re="";
+        if(point==0)
+            {if(sum==7||sum==11)
+                re="natural";
+            else if (sum==2||sum==3||sum==12)
+                re="craps";
+            else
+            {point=sum;
+            System.out.println("point is "+point);}}
+        else
+            {if(sum==7)
+                re="craps";
+            else if (sum==point)
+                re="natural";
+            else
+                {
+                 point=sum;
+                 re="" ;
+                System.out.println("point is "+point);
+                }}
+        return re;
+}}
