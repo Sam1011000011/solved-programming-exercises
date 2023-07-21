@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int[] array =new int[10];
+        int[] distinct_array =new int[10];
+        System.out.println("enter 10 numbers");
+        int input= sc.nextInt();
+        array[0]=input;
+        boolean sawZero=(input==0);
+        for(int i=1;i<array.length;i++)
+            {input= sc.nextInt();
+            array[i]=input;
+            if(input==0)
+                sawZero=true;
+            }
+        boolean distinct;
+        int distinct_amount=0;
+        for(int i=0;i<array.length;i++) {
+            distinct = true;
+            for (int j = 0; j < distinct_array.length; j++)
+                if (distinct_array[j] == array[i])
+                    distinct = false;
+            if(distinct)
+                {distinct_array[distinct_amount]=array[i];
+                 distinct_amount++;} }
+        if(sawZero)
+            System.out.print("0 ");
+        for(int i=0;i<distinct_array.length;i++)
+            if(distinct_array[i]!=0)
+                System.out.print(distinct_array[i]+" ");
+    }
+}
