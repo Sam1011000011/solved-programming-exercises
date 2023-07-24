@@ -1,0 +1,25 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] list=inputIntArray();
+        if(isSorted(list))
+            System.out.println("the list is already sorted");
+        else
+            System.out.println("the list is not sorted");
+    }
+    public static boolean isSorted(int[] list){
+        int[] sortedArray= list.clone();
+        Arrays.sort(sortedArray);
+        return Arrays.equals(sortedArray, list);
+    }
+    public static int[] inputIntArray(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter an integer array. the first number will be the array size");
+        int length= sc.nextInt();
+        int[] list=new int[length];
+        for(int i=0;i<length;i++)
+            list[i]= sc.nextInt();
+        return list;
+    }}lia
