@@ -1,0 +1,44 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter the amount of students: ");
+        int length = sc.nextInt();
+        String[] students = new String[length];
+        System.out.println("enter the student's' names: ");
+        for (int i = 0; i < length; i++)
+            students[i] = sc.next();
+        double[] grades = new double[length];
+        System.out.println("enter the student's' grades: ");
+        for (int i = 0; i < length; i++)
+            grades[i] = sc.nextDouble();
+        //selection sort
+        for(int i=0;i<length-1;i++) {
+            double currentMax = grades[i];
+            String currentMaxStudent=students[i];
+            int currentMaxIndex = i;
+            for(int j=i+1;j<length;j++)
+                if(grades[j]>currentMax)
+                    {currentMax=grades[j];
+                     currentMaxStudent=students[j];
+                     currentMaxIndex=j;
+                }
+            if(currentMaxIndex!=i){
+                grades[currentMaxIndex] = grades[i];
+                grades[i] = currentMax;
+                students[currentMaxIndex]=students[i];
+                students[i]=currentMaxStudent;
+        }}
+        //print the names
+        System.out.println("the students in descending order of their grades are :");
+        for(int i=0;i<length;i++)
+            {
+                System.out.printf("%-8s",students[i]);
+            }
+        System.out.println();
+        for(int i=0;i<length;i++)
+        {
+            System.out.printf("%-8s",grades[i]);
+        }
+
+    }}
