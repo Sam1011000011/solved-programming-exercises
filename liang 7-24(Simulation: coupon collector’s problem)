@@ -9,13 +9,13 @@ Queen of Spades
 Queen of Hearts
 4 of Diamonds
 Number of picks: 12*/
-
 public class Main {
     public static boolean[] seen_suits =new boolean[4];
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         int pickCount=0;
         while(!allSuitsSeen()){
-            int num=(int)(Math.random()*52+1);
+            int num=(int)(Math.random()*52);
             int card_suit=num/13;
             int card_num=num%13;
             if(!seen_suits[card_suit]){
@@ -32,15 +32,15 @@ public class Main {
 
     private static String getCardNumberName(int card_num) {
         switch (card_num){
-            case 0:
-                return "King";
-            case 1:
-                return "Ace";
             case 12:
-                return "Queens";
+                return "King";
+            case 0:
+                return "Ace";
             case 11:
+                return "Queens";
+            case 10:
                 return "Jack";}
-        return card_num+"";
+        return (card_num+1)+"";
     }
 
     private static String getCardSuitName(int card_suit) {
