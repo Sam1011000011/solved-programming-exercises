@@ -1,0 +1,58 @@
+/* (Merge two sorted lists) Write the following method that merges two sorted lists
+into a new sorted list Implement the method in a way that takes at most list1.length + list2.
+length comparisons. Write a test program that prompts the user to enter two
+sorted lists and displays the merged list. Here is a sample run. Note that the first
+number in the input indicates the number of the elements in the list. This number
+is not part of the list.
+Enter list1: 5 1 5 16 61 111
+Enter list2: 4 2 4 5 6
+The merged list is 1 2 4 5 5 6 16 61 111*/
+
+import java.util.Arrays;
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("enter list1(the first number is the list length): ");
+        int[] list1=inputIntArray();
+        System.out.println("enter list2(the first number is the list length): ");
+        int[] list2=inputIntArray();
+        int[] mergeList=merge(list1,list2);
+        System.out.println("The merged list is "+ Arrays.toString(mergeList));
+
+}
+
+    public static int[] merge(int[] list1, int[] list2){
+        int i=0;
+        int j=0;
+        int k=0;
+        int[] mergeList=new int[list1.length+ list2.length];
+        while(i<list1.length&&j< list2.length){
+            if(list1[i]<list2[j]){
+                mergeList[k]=list1[i];
+                i++;
+            }
+            else {
+                mergeList[k]=list2[j];
+                j++;
+            }
+                k++;
+        }
+        if(i==list1.length)
+            for (; j < list2.length ; j++) {
+                mergeList[k]=list2[j];
+                k++;
+            }
+        else
+            for (; i < list1.length ; i++) {
+                mergeList[k]=list1[i];
+                k++;}
+        return mergeList;
+    }
+    public static int[] inputIntArray(){
+        Scanner sc = new Scanner(System.in);
+        int length= sc.nextInt();
+        int[] list=new int[length];
+        for(int i=0;i<length;i++)
+            list[i]= sc.nextInt();
+        return list;
+    }}
