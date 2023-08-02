@@ -1,0 +1,19 @@
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("enter your string: ");
+        String s=sc.nextLine();
+        System.out.println("the sorted string is: "+sort(s));
+}
+// sorts the string ignoring if the letter is upper or lowercase
+    public static String sort(String s){
+        char[] s_arr=s.toCharArray();
+        for(int i=0;i<s.length()-1;i++){
+            for(int j=i+1;j<s.length();j++) {
+                if(Character.toLowerCase(s_arr[i])>Character.toLowerCase(s_arr[j]))
+                {char temp=s_arr[i];
+                    s_arr[i]=s_arr[j];
+                    s_arr[j]=temp;}
+            }}
+        return String.valueOf(s_arr);}}
