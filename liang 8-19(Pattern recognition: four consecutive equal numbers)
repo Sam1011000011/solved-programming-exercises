@@ -1,0 +1,81 @@
+/*(Pattern recognition: four consecutive equal numbers) Write the following
+method that tests whether a two-dimensional array has four consecutive numbers of the same value, either horizontally, vertically, or diagonally.
+public static boolean isConsecutiveFour(int[][] values) Write a test program that prompts the user to enter the number of rows and columns of a two-dimensional array and then the values in the array and displays
+true if the array contains four consecutive numbers with the same value. Otherwise, display false.*/
+
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        int[][] matrix=inputMatrix();
+        printMatrix(matrix);
+        System.out.println(checkRows(matrix)||checkColumns(matrix)||checkDiagonals(matrix)||checkAntiDiagonals(matrix));
+
+    }
+
+    private static boolean checkRows(int[][] matrix) {
+        if(matrix[0].length<4)
+            return false;
+        boolean result=false;
+        for(int i=0;i< matrix.length;i++)
+            for (int j = 0; j < matrix[i].length-3; j++){
+                if(matrix[i][j]==matrix[i][j+1]&&matrix[i][j+1]==matrix[i][j+2]&&matrix[i][j+2]==matrix[i][j+3])
+                    {result =true;
+                    break;}
+    }
+        return result;  }
+
+    private static boolean checkColumns(int[][] matrix) {
+        if(matrix.length<4)
+            return false;
+        boolean result=false;
+        for(int j=0;j< matrix[0].length;j++)
+            for (int i = 0; i < matrix.length-3; i++)
+                if(matrix[i][j]==matrix[i+1][j]&&matrix[i+1][j]==matrix[i+2][j]&&matrix[i+2][j]==matrix[i+3][j]){
+                    result=true;
+                    break;
+                }
+        return result;
+    }
+
+    private static boolean checkDiagonals(int[][] matrix) {
+        boolean result=false;
+        for(int i=3;i< matrix.length;i++)
+            for (int j = 0; j < matrix[i].length-3; j++)
+                if(matrix[i][j]==matrix[i-1][j+1]&&matrix[i-1][j+1]==matrix[i-2][j+2]&&matrix[i-2][j+2]==matrix[i-3][j+3])
+                    {result=true;
+                    break;}
+        return result;
+    }
+
+    private static boolean checkAntiDiagonals(int[][] matrix) {
+        boolean result=false;
+        for(int i=0;i<matrix.length-3;i++)
+            for(int j=0;j<matrix[i].length-3;j++)
+                if(matrix[i][j]==matrix[i+1][j+1]&&matrix[i+1][j+1]==matrix[i+2][j+2]&&matrix[i+2][j+2]==matrix[i+3][j+3]){
+                    result=true;
+                    break;
+                }
+        return result;
+    }
+
+    private static void printMatrix(int[][] matrix){
+        for(int i=0;i< matrix.length;i++){
+            for(int j=0;j<matrix[i].length;j++)
+                System.out.print(matrix[i][j]+" ");
+            System.out.println();
+        }}
+    public static int[][] inputMatrix(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println(" enter the number of rows and columns");
+        System.out.println("Rows: ");
+        int rows= sc.nextInt();
+        System.out.println("Columns: ");
+        int columns= sc.nextInt();
+        int[][] matrix=new int[rows][columns];
+        System.out.println("enter "+rows*columns+" numbers: ");
+        for(int i=0;i<rows;i++)
+            for(int j=0;j<columns;j++)
+                matrix[i][j]= sc.nextInt();
+        return matrix;
+}
+}
