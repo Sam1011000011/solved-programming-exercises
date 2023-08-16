@@ -1,0 +1,60 @@
+//this q is a page long im not putting it here :/ its on page 312
+//basiclly you are given a graph of banks that says how much they loan each other and their balance,you are also given a limit
+//the total assetes of a bank are its balance+the money it has lenden to other if the total assets are under the limit that bank is unsafe
+//and cannot pay back its loan which means the other bank that have loaned to it may also be unsafe. you have to see which banks are unsafe
+import java.util.Scanner;
+
+public class Main {
+    static Scanner sc=new Scanner(System.in);
+    public static void main(String[] args) {
+        System.out.println("enter the amount of banks: ");
+        int n= sc.nextInt();
+        System.out.println("enter the limit: ");
+        double limit= sc.nextDouble();
+        double [][] bank= makeBank(n,limit);
+        boolean[] countedUnsafes=new boolean[n];
+        for(int idx=0;idx<n;idx++)
+            if(getTotalAssets(idx,bank)<limit&& !countedUnsafes[idx]){
+                countedUnsafes[idx]=true;
+                deleteLoans(idx,bank);
+                idx=0;
+                }
+        for(int i=0;i<n;i++)
+            if(countedUnsafes[i])
+                System.out.println("bank "+i+" is unsafe");
+    }
+    private static void printMatrix(double[][] matrix){
+        for(int i=0;i< matrix.length;i++){
+            for(int j=0;j<matrix[i].length;j++)
+                System.out.printf("%10s",matrix[i][j]);
+            System.out.println();
+        }}
+
+    private static void deleteLoans(int i, double[][] bank) {
+        for(int j=0;j<bank.length;j++)
+            bank[j][i]=0;
+    }
+
+
+    public static double[][] makeBank(int n, double limit) {
+        double[][] bank=new double[n][n];
+        for(int i=0;i<n;i++)
+        {System.out.println("enter bank "+i+"s balance,the number of banks that borrowed money from the bank,and pairs of borrower and money loaned");
+         double balance= sc.nextDouble();
+         bank[i][i]=balance;
+         int count= sc.nextInt();
+         while(count!=0){
+             int j= sc.nextInt();
+             double loan=sc.nextDouble();
+             bank[i][j]=loan;
+             count--;
+         }}
+    return bank;
+    }
+    public static double getTotalAssets(int i,double[][] bank){
+        double asset=0;
+        for(int j=0;j<bank.length;j++)
+            asset+=bank[i][j];
+        return asset;
+    }
+}
