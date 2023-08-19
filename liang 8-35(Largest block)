@@ -1,0 +1,52 @@
+/*(Largest block) Given a square matrix with the elements 0 or 1, write a program
+to find a maximum square submatrix whose elements are all 1s. Your program
+should prompt the user to enter the number of rows in the matrix. The program
+then displays the location of the first element in the maximum square submatrix
+and the number of the rows in the submatrix*/
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        int [][] matrix=getUserMatrix();
+        int [][] cache=new int[matrix.length][matrix.length];
+        System.out.println("----------------");
+        for(int i=matrix.length-1;i>-1;i--)
+            for (int j=matrix.length-1;j>-1;j--)
+                creatCache(matrix,i,j,cache);
+        printMaxSquare(cache);
+    }
+    public static int[][] getUserMatrix(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter an 0 & 1 matrix row by row. the first number will be the array size");
+        int length= sc.nextInt();
+        int[][] list=new int[length][length];
+        for(int i=0;i<length;i++)
+            for(int j=0;j<length;j++)
+                list[i][j]=sc.nextInt();
+        return list;
+    }
+    public static void printMaxSquare(int [][]cache){
+        int max=cache[0][0];
+        int row=0,column=0;
+        for(int i=0;i< cache.length;i++){
+            for(int j=0;j<cache[i].length;j++){
+            if(cache[i][j]>max){
+                max=cache[i][j];
+                row=i;
+                column=j;}}
+        }
+        System.out.println("The maximum square submatrix is at ("+row+","+column+") with size "+max);
+    }
+    public static void creatCache(int[][] matrix, int rowIdx, int columnIdx, int [][] cache){
+        if(rowIdx==matrix.length-1||columnIdx==matrix.length-1||matrix[rowIdx][columnIdx]==0)
+            cache[rowIdx][columnIdx]=matrix[rowIdx][columnIdx];
+        else{
+        cache[rowIdx][columnIdx]=Math.min(cache[rowIdx+1][columnIdx],Math.min(cache[rowIdx+1][columnIdx+1],cache[rowIdx][columnIdx+1]))+1;}
+    }
+
+    private static void printMatrix(int[][] matrix){
+        for(int i=0;i< matrix.length;i++){
+            for(int j=0;j<matrix[i].length;j++)
+                System.out.print(matrix[i][j]+" ");
+            System.out.println();
+        }}}
