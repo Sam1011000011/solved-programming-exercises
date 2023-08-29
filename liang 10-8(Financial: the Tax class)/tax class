@@ -1,0 +1,59 @@
+
+public class Tax {
+    int filingStatus;
+    int[][] brackets;
+    double[] rates;
+    double taxableIncome;
+
+    public double getTax(){
+        if(taxableIncome<brackets[filingStatus][0])
+            return 0;
+        double tax=brackets[filingStatus][0] * rates[0];
+        int i=1;
+        while(i<5&&taxableIncome-brackets[filingStatus][i]>0){
+            tax+=(brackets[filingStatus][i] - brackets[filingStatus][i-1]) * rates[i];
+            i++;
+        }
+        tax=tax+(taxableIncome-brackets[filingStatus][i-1])*rates[i];
+        return tax;
+    }
+
+    public Tax(int filingStatus, int[][] brackets, double[] rates, double taxableIncome) {
+        this.filingStatus = filingStatus;
+        this.brackets = brackets;
+        this.rates = rates;
+        this.taxableIncome = taxableIncome;
+    }
+
+    public int getFilingStatus() {
+        return filingStatus;
+    }
+
+    public void setFilingStatus(int filingStatus) {
+        this.filingStatus = filingStatus;
+    }
+
+    public int[][] getBrackets() {
+        return brackets;
+    }
+
+    public void setBrackets(int[][] brackets) {
+        this.brackets = brackets;
+    }
+
+    public double[] getRates() {
+        return rates;
+    }
+
+    public void setRates(double[] rates) {
+        this.rates = rates;
+    }
+
+    public double getTaxableIncome() {
+        return taxableIncome;
+    }
+
+    public void setTaxableIncome(double taxableIncome) {
+        this.taxableIncome = taxableIncome;
+    }
+}
