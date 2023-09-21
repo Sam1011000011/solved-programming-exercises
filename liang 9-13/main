@@ -1,0 +1,35 @@
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        double[][] a=getUserMatrix();
+        Location max=locateLargest(a);
+        System.out.println("The location of the largest element is "+max.getMaxValue()+" at ("+
+              max.getRow()+","+max.getColumn()+")"  );
+
+    }
+    public static Location locateLargest(double[][] a){
+        Location max=new Location(0,0,a[0][0]);
+        for(int i=0;i<a.length;i++){
+            for(int j=0;j<a[i].length;j++)
+                if(a[i][j]> max.getMaxValue())
+                {max.setColumn(j);
+                    max.setRow(i);
+                    max.setMaxValue(a[i][j]);}
+        }
+        return max;
+    }
+    public static double[][] getUserMatrix() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of rows and columns in the array: ");
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        System.out.println("Enter the array: ");
+        double[][] matrix = new double[n][m];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                matrix[i][j] = sc.nextDouble();
+            }
+        }
+        return matrix;
+    }
+}
