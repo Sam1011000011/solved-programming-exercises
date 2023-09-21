@@ -1,0 +1,64 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        Acouunt[] arr=new Acouunt[10];
+        for(int i=0;i<10;i++){
+            arr[i]=new Acouunt(i,100);
+        }
+        while(true){
+        System.out.println("Enter an id: ");
+        int id= sc.nextInt();
+        while(id<0||id>10){
+            System.out.println("enter a valid id");
+            id= sc.nextInt();
+        }
+        int choice=0;
+        while(choice!=4){
+            System.out.println("Main menu\n1: check balance\n2: withdraw\n3: deposit\n4: exit\nEnter a choice:");
+            choice=sc.nextInt();
+            switch (choice) {
+                case 1:{
+                    System.out.println("the balance is " + arr[id].getBalance());
+                    break;}
+                    case 2:{
+                    System.out.println("enter the amount to withdraw : ");
+                    double amount=sc.nextDouble();
+                    arr[id].withdraw(amount);
+                    break;
+                }
+                case 3:{
+                    System.out.println("enter the amount to deposit : ");
+                    double amount=sc.nextDouble();
+                    arr[id].deposit(amount);
+                    break;
+                }
+                case 4 :
+                {break;}
+                default:
+                {
+                    System.out.println("invalid choice");
+                }
+            }}
+        }
+    }
+
+    public static double[][] getUserMatrix() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of rows and columns in the array: ");
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        System.out.println("Enter the array: ");
+        double[][] matrix = new double[n][m];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                matrix[i][j] = sc.nextDouble();
+            }
+        }
+        return matrix;
+    }
+}
+
+
+
