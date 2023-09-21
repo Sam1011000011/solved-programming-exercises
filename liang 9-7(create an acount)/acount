@@ -1,0 +1,56 @@
+package com.company;
+
+import java.util.Date;
+
+public class Acouunt {
+    private int id = 0;
+    private double balance=0;
+    private double annualInterestRate=0;
+    private Date date;
+
+    public Acouunt(int id, double balance) {
+        this.id = id;
+        this.balance = balance;
+        date = new Date();
+    }
+    public void deposit(double m){balance=balance+m;}
+    public void withdraw(double m){balance=balance-m;}
+    public double getMonthlyInterest(){
+        return balance * getMonthlyInterestRate()/100;
+    }
+    public double getMonthlyInterestRate(){
+        return annualInterestRate/12;
+    }
+
+    public Acouunt() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public double getAnnualInterestRate() {
+        return annualInterestRate;
+    }
+
+    public void setAnnualInterestRate(double annualInterestRate) {
+        this.annualInterestRate = annualInterestRate;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+}
