@@ -1,0 +1,27 @@
+public class Main {
+    public static void main(String[] args) {
+
+    Acount a=new Acount(1122,1000,"George");
+    a.setAnnualInterestRate(1.5);
+    a.deposit(30);
+    a.deposit(40);
+    a.deposit(50);
+    a.withdraw(5);
+    a.withdraw(4);
+    a.withdraw(2);
+    printAcountSummer(a);
+    }
+
+    private static void printAcountSummer(Acount a) {
+        System.out.println("account holder: "+a.getName()+" interest rate: "+a.getAnnualInterestRate()+" balance: "+
+                a.getBalance());
+        int count=1;
+        System.out.println("list of transactions: ");
+        for( Transaction t : a.getTransactions()){
+            System.out.println(count+") amount : " +t.getAmount()+
+                    " balance: "+t.getBalance() + " type:"+t.getType() + " date: "+t.getDate() +
+                    " description: "+t.getDescription());
+            count++;
+        }
+    }
+}
