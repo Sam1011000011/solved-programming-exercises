@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        for(int i=1;i<5;i++){
+        for(int i=1;i<35;i++){
             String s="C:\\Users\\1\\IdeaProjects\\"+args[0]+"\\chapter"+i+".JAVA";
             File file=new File(s);
             Scanner input=new Scanner(file);
