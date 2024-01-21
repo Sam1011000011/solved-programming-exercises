@@ -1,0 +1,66 @@
+ //Rewrite Programming Exercise 7.35. The program reads the
+//words stored in a text file named hangman.txt. Words are delimited by spaces.
+
+
+package com.company;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    static int gc=0;
+    static ArrayList<Character> guesses=new ArrayList<Character>();
+    static String  word="";
+    public static void main(String[] args) throws FileNotFoundException {
+        int n =(int)(Math.random()*370105+1);
+        File file=new File("C:\\Users\\PC\\IdeaProjects\\liang\\src\\com\\company\\words_alpha.txt");
+        Scanner sc=new Scanner(file);
+        Scanner in=new Scanner(System.in);
+        String s = null;
+        for(int i=0;i<n;i++){
+            s=sc.nextLine();
+        }
+        System.out.println(getWord(s));
+        while(gc<11 && (word == null ? s != null : !word.equals(s))){
+            System.out.println("guess a letter");
+            char c=in.nextLine().charAt(0);
+            if(guesses.contains(c)){
+                System.out.println("you've already guessed this letter try again");
+            }
+            else if(s.contains(c+"")){
+                System.out.println("correct!");
+                guesses.add(c);
+            }
+            else{
+                System.out.println("wrong guess :(");
+                guesses.add(c);
+                gc++;
+        }
+            System.out.println(getWord(s));
+            System.out.println("s is :"+s+" word is "+word);}
+        if(gc==11)
+            System.out.println("you've lost the word was "+s);
+        else
+            System.out.println("you won");
+    }
+
+    private static boolean wordfound(String s) {
+        if(word==s)
+            return true;
+        return false;
+    }
+
+    private static String getWord(String s) {
+        word="";
+        for(int i=0;i<s.length();i++){
+            if(guesses.contains(s.charAt(i)))
+                word+=s.charAt(i);
+            else
+                word+="*";
+        }
+        return word;
+    }
+
+}
